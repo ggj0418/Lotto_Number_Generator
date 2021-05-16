@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">복권번호 생성기</string>
+
+    // activity_main
+    <string name="lotto">로또</string>
+    <string name="pension">연금복권</string>
+    <string name="clear">목록 초기화</string>
+    <string name="menu">메뉴</string>
+
+    // activity_winning_number
+    <string name="draw_date">추첨 날짜</string>
+    <string name="draw_numbers">당첨 번호</string>
+    <string name="draw_bonus_number">보너스</string>
+    <string name="total_sell_amount">총 판매금액</string>
+    <string name="winner_total_amount">1등 총액</string>
+    <string name="winner_count">1등 개수</string>
+    <string name="winner_each_amount">인당 수령액</string>
+</resources>
