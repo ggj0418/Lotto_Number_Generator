@@ -1,13 +1,16 @@
 package com.mepus.productiontest;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.ContentLoadingProgressBar;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,8 +19,8 @@ import android.widget.Toast;
 import com.mepus.productiontest.dto.LottoData;
 import com.mepus.productiontest.retrofit.RetrofitAdapter;
 import com.mepus.productiontest.retrofit.RetrofitService;
+import com.mepus.productiontest.shared.PreferenceManager;
 
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +41,8 @@ public class WinningNumberActivity extends AppCompatActivity {
     private TextView tv_drawDate, tv_drawNumbers, tv_bonusNumber, tv_totalSellAmount, tv_winner_total_amount, tv_winner_count, tv_each_amount;
     private Spinner lottoTurnSpinner;
     private ProgressBar loadingProgressBar;
+    private Button bt_search;
+    private EditText et_search;
 
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
     private RetrofitService retrofitService;
@@ -50,7 +55,7 @@ public class WinningNumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winning_number);
 
-        setLottoTurnList(964);  // TODO 나중에 가장 최신 회차 숫자로 변경
+        setLottoTurnList(PreferenceManager.getLong(getApplicationContext(), "latest_draw_turn"));
         initComponent();
         setRetrofit();
     }
@@ -95,6 +100,7 @@ public class WinningNumberActivity extends AppCompatActivity {
     }
 
     private void updateUI(LottoData l1) {
+//        Toast.makeText(getApplicationContext(), l1.getDrwNoDate(), Toast.LENGTH_LONG).show();
         tv_drawDate.setText(l1.getDrwNoDate());
         tv_drawNumbers.setText(getWholeDrawNumber(l1));
         tv_bonusNumber.setText(String.valueOf(l1.getBnusNo()));
@@ -108,9 +114,9 @@ public class WinningNumberActivity extends AppCompatActivity {
         retrofitService = RetrofitAdapter.getInstance().getServiceApi();
     }
 
-    private void setLottoTurnList(int turn) {
+    private void setLottoTurnList(long turn) {
         lottoTurnList.add("---------");
-        for(int i = turn; i > 0; i--) {
+        for(long i = turn; i > 0; i--) {
             lottoTurnList.add(i + "회차");
         }
     }
@@ -144,5 +150,30 @@ public class WinningNumberActivity extends AppCompatActivity {
         tv_each_amount = findViewById(R.id.winning_tv_each_amount);
 
         loadingProgressBar = findViewById(R.id.winning_pb_loading);
+
+        et_search = findViewById(R.id.winning_et_lotto_turn);
+        bt_search = findViewById(R.id.winning_bt_search);
+        bt_search.setOnClickListener(view -> {
+            int turn = Integer.parseInt(et_search.getText().toString());
+            int latestDrawTurn = (int) PreferenceManager.getLong(getApplicationContext(), "latest_draw_turn");
+
+            if(turn > latestDrawTurn) {
+                Toast.makeText(getApplicationContext(), "최신 회차는 " + latestDrawTurn + " 입니다", Toast.LENGTH_LONG).show();
+            }
+            else {
+                int spinnerIndex = (int) PreferenceManager.getLong(getApplicationContext(), "latest_draw_turn") - turn + 1;
+                et_search.setText("");
+                lottoTurnSpinner.setSelection(spinnerIndex);
+                selectedSpinnerPosition = spinnerIndex;
+                startRxWinningLottoNumbers(turn);
+                hideKeyboard();
+                et_search.clearFocus();
+            }
+        });
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager manager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 }

@@ -10,8 +10,8 @@ android {
         applicationId "com.mepus.productiontest"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 3   // 2021.05.14 버전
-        versionName "1.21"
+        versionCode 10   // 2021.05.31 버전
+        versionName "1.5.4" // 일요일 00시에 회차번호가 제대로 초기화되지 않는 오류 수정
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

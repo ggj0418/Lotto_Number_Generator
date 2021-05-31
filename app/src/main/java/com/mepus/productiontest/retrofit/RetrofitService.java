@@ -3,9 +3,7 @@ package com.mepus.productiontest.retrofit;
 import com.mepus.productiontest.dto.LottoData;
 
 import io.reactivex.Observable;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface RetrofitService {
