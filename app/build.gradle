@@ -10,8 +10,8 @@ android {
         applicationId "com.mepus.productiontest"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 10   // 2021.05.31 버전
-        versionName "1.5.4" // 일요일 00시에 회차번호가 제대로 초기화되지 않는 오류 수정
+        versionCode 12   // 2021.06.08 버전
+        versionName "1.5.6" // 인터넷 연결 오류 수정
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,6 +32,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.play:core:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

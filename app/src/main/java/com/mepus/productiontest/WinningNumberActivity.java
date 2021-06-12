@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonSyntaxException;
 import com.mepus.productiontest.dto.LottoData;
 import com.mepus.productiontest.retrofit.RetrofitAdapter;
 import com.mepus.productiontest.retrofit.RetrofitService;
@@ -79,7 +80,13 @@ public class WinningNumberActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+                        if(e instanceof IllegalStateException || e instanceof JsonSyntaxException) {
+                            Toast.makeText(getApplicationContext(), "사이트가 점검중입니다", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                        loadingProgressBar.setVisibility(View.INVISIBLE);
                     }
 
                     @Override
@@ -154,7 +161,16 @@ public class WinningNumberActivity extends AppCompatActivity {
         et_search = findViewById(R.id.winning_et_lotto_turn);
         bt_search = findViewById(R.id.winning_bt_search);
         bt_search.setOnClickListener(view -> {
-            int turn = Integer.parseInt(et_search.getText().toString());
+            String editTurnText = et_search.getText().toString().trim();    // 스페이스바 제거
+            int turn;
+
+            if(editTurnText.getBytes().length <= 0) {
+                Toast.makeText(getApplicationContext(), "찾고자 하는 회차번호를 입력해주세요", Toast.LENGTH_LONG).show();
+                return;
+            }
+            else {
+                turn = Integer.parseInt(et_search.getText().toString());
+            }
             int latestDrawTurn = (int) PreferenceManager.getLong(getApplicationContext(), "latest_draw_turn");
 
             if(turn > latestDrawTurn) {
