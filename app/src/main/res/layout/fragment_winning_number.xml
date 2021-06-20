@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/winning_spn_lotto_turn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/winning_et_lotto_turn"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:background="@drawable/edittext_border"
+        android:textSize="24sp"
+        android:paddingStart="12sp"
+        android:paddingEnd="12sp"
+        android:paddingTop="4sp"
+        android:paddingBottom="4sp"
+        android:layout_marginStart="6sp"
+        android:layout_marginEnd="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winning_spn_lotto_turn"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent="0.75"/>
+
+    <Button
+        android:id="@+id/winning_bt_search"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:layout_marginStart="4sp"
+        android:layout_marginEnd="4sp"
+        android:contentDescription="@string/explain_draw_day"
+        android:text="@string/winner_search"
+        android:textSize="24sp"
+        android:textColor="@color/purple_500"
+        android:background="@drawable/button_background"
+        app:layout_constraintBottom_toBottomOf="@+id/winning_et_lotto_turn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/winning_et_lotto_turn"
+        app:layout_constraintTop_toTopOf="@+id/winning_et_lotto_turn"/>
+
+    <TextView
+        android:id="@+id/winning_tv_static_drawDate"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:paddingStart="12sp"
+        android:paddingEnd="0sp"
+        android:text="@string/draw_date"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winning_et_lotto_turn"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/winning_tv_drawDate"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:paddingStart="0sp"
+        android:paddingEnd="12sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/winning_tv_static_drawDate"
+        app:layout_constraintTop_toTopOf="@+id/winning_tv_static_drawDate"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/winning_tv_static_drawNumbers"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:gravity="center"
+        android:paddingStart="12sp"
+        android:paddingEnd="0sp"
+        android:text="@string/draw_numbers"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winning_tv_static_drawDate"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <TextView
+        android:id="@+id/winning_tv_static_bonusNumber"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="0sp"
+        android:paddingEnd="12sp"
+        android:text="@string/draw_bonus_number"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/winning_tv_static_drawNumbers"
+        app:layout_constraintTop_toTopOf="@+id/winning_tv_static_drawNumbers"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/winning_tv_drawNumbers"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:layout_marginTop="24sp"
+        android:gravity="center"
+        android:paddingStart="12sp"
+        android:paddingEnd="0sp"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winning_tv_static_drawNumbers"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <TextView
+        android:id="@+id/winning_tv_bonusNumber"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:gravity="center"
+        android:paddingStart="0sp"
+        android:paddingEnd="12sp"
+        android:textSize="32sp"
+        android:textColor="#0000FF"
+        android:textStyle="bold"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/winning_tv_drawNumbers"
+        app:layout_constraintTop_toTopOf="@+id/winning_tv_drawNumbers"
+        app:layout_constraintHeight_percent="0.2"/>
+
+    <TextView
+        android:id="@+id/winning_tv_static_totalSellAmount"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36sp"
+        android:paddingStart="12sp"
+        android:paddingEnd="0sp"
+        android:text="@string/total_sell_amount"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winning_tv_drawNumbers"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/winning_tv_totalSellAmount"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:paddingStart="12sp"
+        android:paddingEnd="12sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/winning_tv_static_totalSellAmount"
+        app:layout_constraintTop_toTopOf="@+id/winning_tv_static_totalSellAmount"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/winning_tv_static_winner_total_amount"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:paddingStart="12sp"
+        android:paddingEnd="0sp"
+        android:text="@string/winner_total_amount"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winning_tv_static_totalSellAmount"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/winning_tv_winner_total_amount"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:paddingStart="12sp"
+        android:paddingEnd="12sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/winning_tv_static_winner_total_amount"
+        app:layout_constraintTop_toTopOf="@+id/winning_tv_static_winner_total_amount"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/winning_tv_static_winner_count"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:paddingStart="12sp"
+        android:paddingEnd="0sp"
+        android:text="@string/winner_count"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winning_tv_static_winner_total_amount"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/winning_tv_winner_count"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:paddingStart="12sp"
+        android:paddingEnd="12sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/winning_tv_static_winner_count"
+        app:layout_constraintTop_toTopOf="@+id/winning_tv_static_winner_count"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/winning_tv_static_each_amount"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:paddingStart="12sp"
+        android:paddingEnd="0sp"
+        android:text="@string/winner_each_amount"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winning_tv_static_winner_count"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/winning_tv_each_amount"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:paddingStart="12sp"
+        android:paddingEnd="12sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/winning_tv_static_each_amount"
+        app:layout_constraintTop_toTopOf="@+id/winning_tv_static_each_amount"
+        app:layout_constraintVertical_bias="0" />
+
+    <ProgressBar
+        android:id="@+id/winning_pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        style="@android:style/Widget.Material.Light.ProgressBar.Inverse"
+        app:layout_constraintBottom_toBottomOf="@+id/winning_tv_drawNumbers"
+        app:layout_constraintEnd_toEndOf="@+id/winning_tv_drawNumbers"
+        app:layout_constraintStart_toStartOf="@+id/winning_tv_drawNumbers"
+        app:layout_constraintTop_toTopOf="@+id/winning_tv_drawNumbers"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24sp"
+        android:gravity="center"
+        android:text="@string/explain_draw_day"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winning_tv_each_amount"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

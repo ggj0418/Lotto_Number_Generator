@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_margin="12sp"
+        android:id="@+id/iv_help"
+        android:background="@drawable/ic_help"
+        android:layout_width="28sp"
+        android:layout_height="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="0"
+        android:contentDescription="help" />
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/iv_cancel1"
+        android:background="@drawable/ic_cancel"
+        android:layout_width="24sp"
+        android:layout_height="24sp"
+        app:layout_constraintStart_toEndOf="@id/tv_number1"
+        app:layout_constraintEnd_toEndOf="@id/tv_number1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_number1"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="1"
+        android:contentDescription="delete 1" />
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/iv_cancel2"
+        android:background="@drawable/ic_cancel"
+        android:layout_width="24sp"
+        android:layout_height="24sp"
+        app:layout_constraintStart_toEndOf="@id/tv_number2"
+        app:layout_constraintEnd_toEndOf="@id/tv_number2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_number2"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="1"
+        android:contentDescription="delete 2"/>
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/iv_cancel3"
+        android:background="@drawable/ic_cancel"
+        android:layout_width="24sp"
+        android:layout_height="24sp"
+        app:layout_constraintStart_toEndOf="@id/tv_number3"
+        app:layout_constraintEnd_toEndOf="@id/tv_number3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_number3"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="1"
+        android:contentDescription="delete 3"/>
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/iv_cancel4"
+        android:background="@drawable/ic_cancel"
+        android:layout_width="24sp"
+        android:layout_height="24sp"
+        app:layout_constraintStart_toEndOf="@id/tv_number4"
+        app:layout_constraintEnd_toEndOf="@id/tv_number4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_number4"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="1"
+        android:contentDescription="delete 4"/>
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/iv_cancel5"
+        android:background="@drawable/ic_cancel"
+        android:layout_width="24sp"
+        android:layout_height="24sp"
+        app:layout_constraintStart_toEndOf="@id/tv_number5"
+        app:layout_constraintEnd_toEndOf="@id/tv_number5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_number5"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="1"
+        android:contentDescription="delete 5"/>
+
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/iv_cancel6"
+        android:background="@drawable/ic_cancel"
+        android:layout_width="24sp"
+        android:layout_height="24sp"
+        app:layout_constraintStart_toEndOf="@id/tv_number6"
+        app:layout_constraintEnd_toEndOf="@id/tv_number6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_number6"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="1"
+        android:contentDescription="delete 6"/>
+
+    <TextView
+        android:id="@+id/tv_number1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/roulette_btn_pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.143"/>
+
+    <TextView
+        android:id="@+id/tv_number2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/roulette_btn_pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.286"/>
+
+    <TextView
+        android:id="@+id/tv_number3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/roulette_btn_pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.429"/>
+
+    <TextView
+        android:id="@+id/tv_number4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/roulette_btn_pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.572"/>
+
+    <TextView
+        android:id="@+id/tv_number5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/roulette_btn_pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.715"/>
+
+    <TextView
+        android:id="@+id/tv_number6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/roulette_btn_pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.858"/>
+
+    <Button
+        android:id="@+id/roulette_btn_pick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="돌리기"
+        android:textSize="24sp"
+        android:textColor="@color/purple_500"
+        android:background="@drawable/button_background"
+        app:layout_constraintBottom_toTopOf="@id/wheelview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHorizontal_bias="0.3"
+        />
+
+    <Button
+        android:id="@+id/roulette_btn_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="초기화"
+        android:textSize="24sp"
+        android:textColor="@color/purple_500"
+        android:background="@drawable/button_background"
+        app:layout_constraintBottom_toTopOf="@id/wheelview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHorizontal_bias="0.7"
+        />
+
+    <com.lukedeighton.wheelview.WheelView
+        android:id="@+id/wheelview"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        app:emptyItemColor="@color/green_900"
+        app:repeatItems="true"
+        app:rotatableWheelDrawable="false"
+        app:selectionAngle="90.0"
+        app:selectionColor="@color/teal_900"
+        app:selectionPadding="4dp"
+        app:wheelColor="@color/grey_400"
+        app:wheelItemCount="15"
+        app:wheelItemRadius="41dp"
+        app:wheelPadding="13dp"
+        app:wheelRadius="276dp"
+        app:wheelPosition="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHeight_percent="0.5"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
