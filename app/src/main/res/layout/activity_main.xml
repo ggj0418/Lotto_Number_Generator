@@ -1,116 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="160sp"
-        android:layout_height="80sp"
-        android:text="@string/lotto"
-        android:textSize="24sp"
-        android:textColor="@color/deep_blue"
-        android:background="@drawable/button_background"
-        android:layout_marginBottom="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView"
-        app:layout_constraintVertical_bias="0.9" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="160sp"
-        android:layout_height="80sp"
-        android:background="@drawable/button_background"
-        android:text="@string/pension"
-        android:textColor="@color/deep_blue"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button1"
-        app:layout_constraintVertical_bias="0" />
-
-    <Button
-        android:id="@+id/main_bt_clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_background"
-        android:textColor="@color/deep_blue"
-        android:text="@string/clear"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/recyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/number_tv"
-        app:layout_constraintHorizontal_bias="0.95"
-        />
-
-    <TextView
-        android:id="@+id/number_tv"
+    <FrameLayout
+        android:id="@+id/fl_main"
         android:layout_width="match_parent"
-        android:layout_height="128sp"
-        android:gravity="center"
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/main_bt_clear"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="0sp"
+        android:layout_weight="12"/>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_main"
         android:layout_width="match_parent"
-        android:layout_height="360sp"
-        android:layout_marginStart="12sp"
-        android:layout_marginEnd="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/button1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_bt_clear" />
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/bottom_navigation"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/main_fab_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:contentDescription="@string/menu"
-        android:src="@drawable/ic_menu"
-        android:backgroundTint="@color/purple_200"
-        app:maxImageSize="32sp"
-        app:borderWidth="0sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintVertical_bias="1"
-        android:layout_margin="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/main_fab_winning_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:contentDescription="@string/menu"
-        android:src="@drawable/ic_numbers"
-        android:backgroundTint="@color/white"
-        app:maxImageSize="40sp"
-        app:borderWidth="0sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@id/main_fab_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintVertical_bias="1"
-        android:layout_margin="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -10,8 +10,8 @@ android {
         applicationId "com.mepus.productiontest"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 12   // 2021.06.08 버전
-        versionName "1.5.6" // 인터넷 연결 오류 수정
+        versionCode 13   // 2021.06.19 버전
+        versionName "1.6.0" // 바텀 네비게이션 추가, 룰렛 추첨 추가, 내부 업데이트 창 제거
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,23 +30,27 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'com.google.android.play:core:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    //Retrofit - default
+    //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    //Retrofit - gson
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
     implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0-RC1'
-    //RxAndroid
+
+    // RxAndroid
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    //RxJava
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.15'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
+
+    // Roulette
+    implementation 'com.github.lukedeighton:wheelview:0.4.2'
 }

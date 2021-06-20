@@ -34,76 +34,13 @@ public class SplashActivity extends AppCompatActivity {
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
 
     private static final int STANDARD_DRAW_TURN = 961;
-    private static final int PROBLEM_VERSION = 12;
-    private static final int UPDATE_REQUEST_CODE = 9000;
-
-    private AppUpdateManager appUpdateManager;
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == UPDATE_REQUEST_CODE) {
-            // 업데이트가 성공적으로 끝나지 않은 경우
-            if (resultCode != RESULT_OK) {
-                // 업데이트가 취소되거나 실패하면 업데이트를 다시 요청할 수 있다.,
-                // 업데이트 타입을 선택한다 (IMMEDIATE || FLEXIBLE).
-                Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-
-                appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
-                    if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                            // flexible한 업데이트를 위해서는 AppUpdateType.FLEXIBLE을 사용한다.
-                            && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                        // 업데이트를 다시 요청한다.
-                        requestUpdate(appUpdateInfo);
-                    }
-                });
-            }
-            else {
-                startLoading();
-            }
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        checkUpdateVersion();
-    }
-
-    private void checkUpdateVersion() {
-        appUpdateManager = AppUpdateManagerFactory.create(getApplicationContext());
-
-        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-
-        appUpdateInfoTask
-                .addOnSuccessListener(appUpdateInfo -> {
-                    if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
-                        if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE) || appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                            requestUpdate(appUpdateInfo);
-                        }
-                    } else {
-                        startLoading();
-                    }
-                });
-    }
-
-    private void requestUpdate(AppUpdateInfo appUpdateInfo) {
-        try {
-            appUpdateManager.startUpdateFlowForResult(
-                    // 'getAppUpdateInfo()' 에 의해 리턴된 인텐트
-                    appUpdateInfo,
-                    // 'AppUpdateType.FLEXIBLE': 사용자에게 업데이트 여부를 물은 후 업데이트 실행 가능
-                    // 'AppUpdateType.IMMEDIATE': 사용자가 수락해야만 하는 업데이트 창을 보여줌
-                    AppUpdateType.IMMEDIATE,
-                    // 현재 업데이트 요청을 만든 액티비티, 여기선 MainActivity.
-                    this,
-                    // onActivityResult 에서 사용될 REQUEST_CODE.
-                    UPDATE_REQUEST_CODE);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        startLoading();
     }
 
     private void startLoading() {
@@ -209,28 +146,5 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         return number;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        appUpdateManager
-                .getAppUpdateInfo()
-                .addOnSuccessListener(
-                        appUpdateInfo -> {
-                            if (appUpdateInfo.updateAvailability()
-                                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                                // If an in-app update is already running, resume the update.
-                                try {
-                                    appUpdateManager.startUpdateFlowForResult(
-                                            appUpdateInfo,
-                                            AppUpdateType.IMMEDIATE,
-                                            this,
-                                            UPDATE_REQUEST_CODE);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
     }
 }

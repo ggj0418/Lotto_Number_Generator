@@ -17,4 +17,14 @@
     <string name="winner_each_amount">인당 수령액</string>
     <string name="explain_draw_day">회차는 일요일 0시에 최신화됩니다</string>
     <string name="winner_search">검색</string>
+
+    // fragment_roulette
+    <string name="roulette_help">
+        \n
+        1. 룰렛을 돌리고 멈추면 룰렛 상단에 선택된 숫자가 표시됩니다\n
+        2. 선택된 숫자를 클릭하고 위에 뜬 엑스표를 누르면 해당 숫자가 삭제됩니다\n
+        3. 초기화버튼을 누르면 선택된 모든 숫자가 삭제됩니다
+        \n
+    </string>
+
 </resources>
