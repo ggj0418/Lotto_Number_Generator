@@ -177,12 +177,13 @@
         app:layout_constraintHorizontal_bias="0.858"/>
 
     <Button
+        android:layout_marginBottom="12sp"
         android:id="@+id/roulette_btn_pick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="돌리기"
+        android:text="@string/roulette_spin"
         android:textSize="24sp"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/deep_blue"
         android:background="@drawable/button_background"
         app:layout_constraintBottom_toTopOf="@id/wheelview"
         app:layout_constraintEnd_toEndOf="parent"
@@ -193,12 +194,13 @@
         />
 
     <Button
+        android:layout_marginBottom="12sp"
         android:id="@+id/roulette_btn_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="초기화"
+        android:text="@string/roulette_clear"
         android:textSize="24sp"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/deep_blue"
         android:background="@drawable/button_background"
         app:layout_constraintBottom_toTopOf="@id/wheelview"
         app:layout_constraintEnd_toEndOf="parent"
@@ -208,26 +210,22 @@
         app:layout_constraintHorizontal_bias="0.7"
         />
 
-    <com.lukedeighton.wheelview.WheelView
+<!--    app:wheel_arrow_height="35dp"-->
+<!--    app:wheel_arrow_width="20dp"-->
+    <com.adefruandta.spinningwheel.SpinningWheelView
+        android:layout_marginBottom="12sp"
         android:id="@+id/wheelview"
         android:layout_width="match_parent"
         android:layout_height="0sp"
-        app:emptyItemColor="@color/green_900"
-        app:repeatItems="true"
-        app:rotatableWheelDrawable="false"
-        app:selectionAngle="90.0"
-        app:selectionColor="@color/teal_900"
-        app:selectionPadding="4dp"
-        app:wheelColor="@color/grey_400"
-        app:wheelItemCount="15"
-        app:wheelItemRadius="41dp"
-        app:wheelPadding="13dp"
-        app:wheelRadius="276dp"
-        app:wheelPosition="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:wheel_arrow_color="@android:color/black"
+        app:wheel_colors="@array/rainbow_dash"
+        app:wheel_stroke_color="@android:color/black"
+        app:wheel_stroke_width="5dp"
+        app:wheel_text_size="12sp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="1"
         app:layout_constraintHeight_percent="0.5"/>
 

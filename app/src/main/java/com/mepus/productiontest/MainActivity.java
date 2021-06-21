@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mepus.productiontest.fragment.PickNumberFragment;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fl_main, new PickNumberFragment()).commit();
                         return true;
                     case R.id.item_roulette:
+//                        Toast.makeText(getApplicationContext(), "준비중입니다. 다음 업데이트를 기다려주세요!", Toast.LENGTH_SHORT).show();
+//                        return false;
                         getSupportFragmentManager().beginTransaction().replace(R.id.fl_main, new RouletteFragment()).commit();
                         return true;
                     case R.id.item_winning_number:

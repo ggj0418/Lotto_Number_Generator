@@ -45,7 +45,7 @@
         android:contentDescription="@string/explain_draw_day"
         android:text="@string/winner_search"
         android:textSize="24sp"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/deep_blue"
         android:background="@drawable/button_background"
         app:layout_constraintBottom_toBottomOf="@+id/winning_et_lotto_turn"
         app:layout_constraintEnd_toEndOf="parent"

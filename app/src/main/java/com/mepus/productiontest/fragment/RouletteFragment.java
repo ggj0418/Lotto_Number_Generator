@@ -1,18 +1,15 @@
 package com.mepus.productiontest.fragment;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +17,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lukedeighton.wheelview.WheelView;
-import com.lukedeighton.wheelview.adapter.WheelArrayAdapter;
+import com.adefruandta.spinningwheel.SpinningWheelView;
+
 import com.mepus.productiontest.R;
-import com.mepus.productiontest.roulette.MaterialColor;
-import com.mepus.productiontest.roulette.TextDrawable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,10 +39,7 @@ public class RouletteFragment extends Fragment {
     private boolean[] positionVisit = new boolean[6];
     private boolean[] numberVisit = new boolean[46];
 
-    private Timer rotateWheelTimer;
-    private WheelView wheelView;
-
-    private long lastWheelAngle;
+    private SpinningWheelView wheelView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,9 +53,40 @@ public class RouletteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         FragmentActivity context = getActivity();
-        initTextView(context);
-        initButton(context);
-        initWheelView(context);
+        initWheelView(Objects.requireNonNull(context));
+        initTextView(Objects.requireNonNull(context));
+        initButton(Objects.requireNonNull(context));
+    }
+
+    private void initWheelView(FragmentActivity context) {
+        wheelView = context.findViewById(R.id.wheelview);
+
+        List<Integer> numberList = new ArrayList<>();
+        for(int i = 1; i <= 45; i++) {
+            numberList.add(i);
+        }
+
+        wheelView.setItems(numberList); // 초기 데이터 설정
+        wheelView.setEnabled(false);    // 사용자가 룰렛을 직접 터치 불가
+        wheelView.setOnRotationListener(new SpinningWheelView.OnRotationListener<Integer>() {
+            @Override
+            public void onRotation() { }
+
+            @Override
+            public void onStopRotation(Integer item) {
+                for(int i = 0; i < positionVisit.length; i++) {
+                    if(!positionVisit[i] && !numberVisit[item]) {
+                        Log.d("@@@@@@@@@@@@@@@", "i: " + i + " item: " + item);
+                        positionVisit[i] = true;
+                        numberVisit[item] = true;
+                        setNumbersText(i, Integer.toString(item));
+                        break;
+                    }
+                }
+
+                btn_pick.setClickable(true);
+            }
+        });
     }
 
     private void initTextView(FragmentActivity context) {
@@ -126,12 +150,7 @@ public class RouletteFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setTitle("룰렛 설명서")
                 .setMessage(getResources().getString(R.string.roulette_help))
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
+                .setPositiveButton("확인", (dialogInterface, i) -> dialogInterface.dismiss());
 
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -149,27 +168,8 @@ public class RouletteFragment extends Fragment {
     private void initButton(FragmentActivity context) {
         btn_pick = context.findViewById(R.id.roulette_btn_pick);
         btn_pick.setOnClickListener(view -> {
-            if (btn_pick.getText().toString().equals("돌리기")) {
-                initWheelTask(context);
-                btn_pick.setText("멈추기");
-
-                initCount();
-            }
-            else if (btn_pick.getText().toString().equals("멈추기")) {
-                rotateWheelTimer.cancel();
-                btn_pick.setText("돌리기");
-
-                int selectedNumber = wheelView.getSelectedPosition() + 1;
-
-                for (int i = 0; i < 6; i++) {
-                    if (!positionVisit[i] && !numberVisit[selectedNumber]) {
-                        positionVisit[i] = true;
-                        numberVisit[selectedNumber] = true;
-                        setNumbersText(i, Integer.toString(selectedNumber));
-                        break;
-                    }
-                }
-            }
+            btn_pick.setClickable(false);
+            wheelView.rotate(360, 1500, 50);
         });
 
         btn_clear = context.findViewById(R.id.roulette_btn_clear);
@@ -184,57 +184,13 @@ public class RouletteFragment extends Fragment {
             Arrays.fill(numberVisit, false);
             Arrays.fill(positionVisit, false);
 
-            initCount();
+            iv_cancel1.setVisibility(View.INVISIBLE);
+            iv_cancel2.setVisibility(View.INVISIBLE);
+            iv_cancel3.setVisibility(View.INVISIBLE);
+            iv_cancel4.setVisibility(View.INVISIBLE);
+            iv_cancel5.setVisibility(View.INVISIBLE);
+            iv_cancel6.setVisibility(View.INVISIBLE);
         });
-    }
-
-    private void initCount() {
-        wheelView.setAngle(0);
-        lastWheelAngle = 0;
-    }
-
-    private void initWheelView(FragmentActivity context) {
-        wheelView = context.findViewById(R.id.wheelview);
-
-        //create data for the adapter
-        List<Map.Entry<String, Integer>> entries = new ArrayList<>(ITEM_COUNT);
-        for (int i = 0; i < ITEM_COUNT; i++) {
-            Map.Entry<String, Integer> entry = MaterialColor.random(context, "\\D*_500$");
-            entries.add(entry);
-        }
-
-        //populate the adapter, that knows how to draw each item (as you would do with a ListAdapter)
-        wheelView.setAdapter(new MaterialColorAdapter(entries));
-
-        //a listener for receiving a callback for when the item closest to the selection angle changes
-        wheelView.setOnWheelItemSelectedListener((parent, itemDrawable, position) -> {
-            //get the item at this position
-            Map.Entry<String, Integer> selectedEntry = ((MaterialColorAdapter) parent.getAdapter()).getItem(position);
-            parent.setSelectionColor(getContrastColor(selectedEntry));
-        });
-
-        //initialise the selection drawable with the first contrast color
-        wheelView.setSelectionColor(getContrastColor(entries.get(0)));
-
-        rotateWheelTimer = new Timer();
-    }
-
-    private void initWheelTask(FragmentActivity context) {
-        TimerTask rotateWheelTask = new TimerTask() {
-            @Override
-            public void run() {
-                if(lastWheelAngle > Long.MAX_VALUE - 100) {
-                    initCount();
-                }
-                lastWheelAngle += 10;
-                context.runOnUiThread(() -> {
-                    wheelView.setAngle(lastWheelAngle);
-                });
-            }
-        };
-
-        rotateWheelTimer = new Timer();
-        rotateWheelTimer.schedule(rotateWheelTask, 0, 10);
     }
 
     private void setNumbersText(int position, String str) {
@@ -257,33 +213,6 @@ public class RouletteFragment extends Fragment {
             case 5:
                 tv_number6.setText(str);
                 break;
-        }
-    }
-
-    //get the materials darker contrast
-    private int getContrastColor(Map.Entry<String, Integer> entry) {
-        String colorName = MaterialColor.getColorName(entry);
-        return MaterialColor.getContrastColor(colorName);
-    }
-
-    static class MaterialColorAdapter extends WheelArrayAdapter<Map.Entry<String, Integer>> {
-        MaterialColorAdapter(List<Map.Entry<String, Integer>> entries) {
-            super(entries);
-        }
-
-        @Override
-        public Drawable getDrawable(int position) {
-            Drawable[] drawable = new Drawable[]{
-                    createOvalDrawable(getItem(position).getValue()),
-                    new TextDrawable(String.valueOf(position + 1))
-            };
-            return new LayerDrawable(drawable);
-        }
-
-        private Drawable createOvalDrawable(int color) {
-            ShapeDrawable shapeDrawable = new ShapeDrawable(new OvalShape());
-            shapeDrawable.getPaint().setColor(color);
-            return shapeDrawable;
         }
     }
 }
