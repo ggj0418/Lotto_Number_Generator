@@ -1,4 +1,4 @@
-package com.mepus.productiontest.fragment;
+package com.mepus.productiontest.fragment.main;
 
 import android.content.DialogInterface;
 import android.os.Bundle;

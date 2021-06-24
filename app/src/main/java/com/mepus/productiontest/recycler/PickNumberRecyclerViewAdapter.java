@@ -13,11 +13,11 @@ import com.mepus.productiontest.R;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class PickNumberRecyclerViewAdapter extends RecyclerView.Adapter<PickNumberRecyclerViewAdapter.ViewHolder> {
 
     private List<String> mData;
 
-    public RecyclerViewAdapter(List<String> list) {
+    public PickNumberRecyclerViewAdapter(List<String> list) {
         mData = list;
     }
 
@@ -35,16 +35,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @NonNull
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item, parent, false);
+    public PickNumberRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pick_number_recyclerview_item, parent, false);
 
-        RecyclerViewAdapter.ViewHolder vh = new RecyclerViewAdapter.ViewHolder(view) ;
+        PickNumberRecyclerViewAdapter.ViewHolder vh = new PickNumberRecyclerViewAdapter.ViewHolder(view) ;
 
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PickNumberRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.tv.setText(mData.get(position));
 
         holder.iv.setOnClickListener(view -> {

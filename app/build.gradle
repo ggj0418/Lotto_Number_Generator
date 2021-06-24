@@ -10,8 +10,8 @@ android {
         applicationId "com.mepus.productiontest"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 15   // 2021.06.22 버전
-        versionName "1.6.2" // 기존 룰렛 에러해결
+        versionCode 16   // 2021.06.25 버전
+        versionName "1.7.0" // 무작위 숫자 분석 기능 추가
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

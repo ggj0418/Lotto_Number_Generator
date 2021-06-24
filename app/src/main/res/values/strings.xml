@@ -30,4 +30,18 @@
     <string name="roulette_spin">돌리기</string>
     <string name="roulette_clear">초기화</string>
 
+    // fragment_analytics_random_pick
+    <string name="analytics_random_pick">무작위 번호 분석</string>
+    <string name="analytics_random_pick_help">
+        \n
+        1부터 45까지의 숫자를 무작위로 10만번 돌려서 나온 빈도 수를 오름차순으로 보여줍니다.
+        \n
+    </string>
+
+    // navigation items
+    <string name="navigation_random">랜덤번호</string>
+    <string name="navigation_roulette">룰렛랜덤</string>
+    <string name="navigation_analytics">번호분석</string>
+    <string name="navigation_winning_number">당첨확인</string>
+
 </resources>

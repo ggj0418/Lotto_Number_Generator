@@ -3,15 +3,20 @@
     <item
         android:id="@+id/item_pick_number"
         android:icon="@drawable/ic_random_pick"
-        android:title="랜덤번호" />
+        android:title="@string/navigation_random" />
 
     <item
         android:id="@+id/item_roulette"
         android:icon="@drawable/ic_roulette"
-        android:title="룰렛랜덤" />
+        android:title="@string/navigation_roulette" />
+
+    <item
+        android:id="@+id/item_analytics"
+        android:icon="@drawable/ic_analytics"
+        android:title="@string/navigation_analytics" />
 
     <item
         android:id="@+id/item_winning_number"
         android:icon="@drawable/ic_numbers"
-        android:title="당첨확인" />
+        android:title="@string/navigation_winning_number" />
 </menu>

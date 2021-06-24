@@ -1,4 +1,4 @@
-package com.mepus.productiontest.fragment;
+package com.mepus.productiontest.fragment.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mepus.productiontest.R;
 import com.mepus.productiontest.recycler.RecyclerDecoration;
-import com.mepus.productiontest.recycler.RecyclerViewAdapter;
+import com.mepus.productiontest.recycler.PickNumberRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +28,7 @@ public class PickNumberFragment extends Fragment {
     List<String> list = new ArrayList<>();
     RecyclerView recyclerView;
     Button lottoBtn, weBtn, clearBtn;
-    RecyclerViewAdapter adapter;
+    PickNumberRecyclerViewAdapter adapter;
     TextView textView;
 
     LinearLayoutManager linearLayoutManager;
@@ -48,7 +48,7 @@ public class PickNumberFragment extends Fragment {
         initComponent(view);
     }
 
-        private void initComponent(View view) {
+    private void initComponent(View view) {
         linearLayoutManager = new LinearLayoutManager(view.getContext());
 
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -57,7 +57,7 @@ public class PickNumberFragment extends Fragment {
         RecyclerDecoration recyclerDecoration = new RecyclerDecoration(24);
         recyclerView.addItemDecoration(recyclerDecoration);
 
-        adapter = new RecyclerViewAdapter(list);
+        adapter = new PickNumberRecyclerViewAdapter(list);
         recyclerView.setAdapter(adapter);
 
         textView = view.findViewById(R.id.number_tv);
@@ -91,14 +91,14 @@ public class PickNumberFragment extends Fragment {
         Set<Integer> set = new HashSet<>();
         Random random = new Random();
 
-        while(set.size() < 6) {
-            set.add(random.nextInt(45)+1);
+        while (set.size() < 6) {
+            set.add(random.nextInt(45) + 1);
         }
 
         List<Integer> tempList = new ArrayList<>(set);
         Collections.sort(tempList);
 
-        for(Integer number : tempList) {
+        for (Integer number : tempList) {
             sb.append(number).append(" ");
         }
 
@@ -109,9 +109,9 @@ public class PickNumberFragment extends Fragment {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
 
-        sb.append(random.nextInt(5)+1).append("조 ");
+        sb.append(random.nextInt(5) + 1).append("조 ");
 
-        for(int i=0;i<6;i++) {
+        for (int i = 0; i < 6; i++) {
             sb.append(random.nextInt(6) + 1).append(" ");
         }
 

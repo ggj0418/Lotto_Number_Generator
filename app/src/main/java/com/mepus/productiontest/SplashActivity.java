@@ -40,17 +40,16 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        setComponent();
         startLoading();
     }
 
     private void startLoading() {
         Handler mHandler = new Handler();
         mHandler.postDelayed(() -> {
-            setComponent();
             setPreference();
             startNextActivity();
             //수행할 작업 작성
-            finish();
         }, 1500);
     }
 
