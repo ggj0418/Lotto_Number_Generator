@@ -10,8 +10,9 @@ android {
         applicationId "com.mepus.productiontest"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 16   // 2021.06.25 버전
-        versionName "1.7.0" // 무작위 숫자 분석 기능 추가
+        versionCode 17   // 2021.06.27 버전
+        versionName "1.8.0" // 로고 변경
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,4 +54,6 @@ dependencies {
 
     // Roulette
     implementation 'com.adefruandta.spinningwheel:spinningwheel:0.1.0'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
 }

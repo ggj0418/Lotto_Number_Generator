@@ -26,10 +26,15 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.TimeZone;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class SplashActivity extends AppCompatActivity {
-
-    private ProgressBar pb_waiting;
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
 
@@ -40,7 +45,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        setComponent();
         startLoading();
     }
 
@@ -59,7 +63,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void setPreference() {
-        pb_waiting.setVisibility(View.VISIBLE);
         // 가장 처음 어플을 설치해서 실행한 경우
         if (PreferenceManager.getString(getApplicationContext(), "latest_draw_day").equals("")
                 || PreferenceManager.getLong(getApplicationContext(), "latest_draw_turn") == -1) {
@@ -72,11 +75,6 @@ public class SplashActivity extends AppCompatActivity {
             PreferenceManager.setString(getApplicationContext(), "latest_draw_day", getDrawDay(day));
             PreferenceManager.setLong(getApplicationContext(), "latest_draw_turn", getDrawTurn(day));
         }
-        pb_waiting.setVisibility(View.INVISIBLE);
-    }
-
-    private void setComponent() {
-        pb_waiting = findViewById(R.id.splash_pb_waiting);
     }
 
     private long getDrawTurn(String dateStr) {
