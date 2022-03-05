@@ -6,8 +6,8 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="160sp"
-        android:layout_height="80sp"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
         android:text="@string/lotto"
         android:textSize="24sp"
         android:textColor="@color/deep_blue"
@@ -18,12 +18,14 @@
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recyclerView"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintHeight_percent="0.1"/>
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="160sp"
-        android:layout_height="80sp"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
         android:background="@drawable/button_background"
         android:text="@string/pension"
         android:textColor="@color/deep_blue"
@@ -33,7 +35,10 @@
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button1"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent="0.4"
+        app:layout_constraintHeight_percent="0.1"
+        />
 
     <Button
         android:id="@+id/main_bt_clear"

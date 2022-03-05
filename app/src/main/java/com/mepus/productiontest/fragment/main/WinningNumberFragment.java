@@ -1,7 +1,6 @@
 package com.mepus.productiontest.fragment.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +78,7 @@ public class WinningNumberFragment extends Fragment {
     private void startRxWinningLottoNumbers(int turn, FragmentActivity context) {
         loadingProgressBar.setVisibility(View.VISIBLE);
 
-        Observable<LottoData> observable = retrofitService.getWinningNumbers("getLottoNumber", turn);
+        Observable<LottoData> observable = retrofitService.getWinningNumbersRxJava("getLottoNumber", turn);
         mCompositeDisposable.add(observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<LottoData>() {

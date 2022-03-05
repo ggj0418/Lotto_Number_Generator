@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mepus.productiontest.fragment.main.AnalyticsFragment;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
     private int navigationId = 0;
+    private long backKeyPressedTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,5 +58,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigationView.setSelectedItemId(R.id.item_pick_number);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2500) {
+            Toast.makeText(this, "뒤로 가기 버튼을 한번 더 누르면\n어플이 종료됩니다.", Toast.LENGTH_SHORT).show();
+            backKeyPressedTime = System.currentTimeMillis();
+        }
+        else {
+            finishAffinity();
+        }
     }
 }

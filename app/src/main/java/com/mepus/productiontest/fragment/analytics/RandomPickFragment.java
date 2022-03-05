@@ -10,20 +10,29 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.mepus.productiontest.R;
 import com.mepus.productiontest.recycler.AnalyticsRandomRecyclerViewAdapter;
 import com.mepus.productiontest.recycler.RecyclerDecoration;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.SplittableRandom;
@@ -37,6 +46,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RandomPickFragment extends Fragment {
     List<int[]> list = new ArrayList<>();
+    List<String> randomMaxList = new ArrayList<>();
     RecyclerView recyclerView;
     AnalyticsRandomRecyclerViewAdapter adapter;
 
@@ -44,8 +54,14 @@ public class RandomPickFragment extends Fragment {
 
     private ImageView iv_hlep;
     private ProgressBar analytics_pv;
+    private Spinner randomMaxSpinner;
 
     private Disposable disposable;
+
+    private final static Locale currentLocale = Locale.KOREA;
+    private final static NumberFormat numberFormatter = NumberFormat.getNumberInstance(currentLocale);
+
+    private int selectedSpinnerPosition = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,15 +76,21 @@ public class RandomPickFragment extends Fragment {
 
         FragmentActivity context = getActivity();
 
+        initMaxList();
         initComponent(Objects.requireNonNull(context));
-
-        startRxRandomNumber();
     }
 
-    private void startRxRandomNumber() {
+    private void initMaxList() {
+        for (int i = 1; i <= 10; i++) {
+            randomMaxList.add(numberFormatter.format(100000 * i) + "번");
+        }
+    }
+
+    private void startRxRandomNumber(int max) {
+        list.clear();
         analytics_pv.setVisibility(View.VISIBLE);
         disposable = Observable.fromCallable(() -> {
-            getRandomNumber();
+            getRandomNumber(max);
             return false;
         })
                 .subscribeOn(Schedulers.io())
@@ -98,20 +120,53 @@ public class RandomPickFragment extends Fragment {
 
         adapter = new AnalyticsRandomRecyclerViewAdapter(list);
         recyclerView.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_item, randomMaxList);
+
+        randomMaxSpinner = context.findViewById(R.id.random_spn_max_number);
+        randomMaxSpinner.setAdapter(adapter);
+        randomMaxSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(selectedSpinnerPosition != position) {
+                    String temp = randomMaxList.get(position);
+                    temp = temp.substring(0, temp.length() - 1);
+
+                    startRxRandomNumber(parseStringToInt(temp));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(context, "선택된게 없습니다", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    private void getRandomNumber() {
+    private int parseStringToInt(String str) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) != ',') {
+                sb.append(str.charAt(i));
+            }
+        }
+
+        return Integer.parseInt(sb.toString());
+    }
+
+    private void getRandomNumber(int max) {
         SplittableRandom sr = new SplittableRandom();
         Map<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < max; i++) {
             int number = sr.nextInt(1, 46);
 
             map.put(number, map.getOrDefault(number, 0) + 1);
         }
 
         List<Integer> keyList = new ArrayList<>(map.keySet());
-        keyList.sort((o1, o2) -> (map.get(o1) - map.get(o2)));
+        keyList.sort(Comparator.comparingInt(map::get));
 
         for (int key : keyList) {
             list.add(new int[]{key, map.get(key)});

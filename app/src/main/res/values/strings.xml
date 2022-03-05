@@ -16,6 +16,7 @@
     <string name="winner_count">1등 개수</string>
     <string name="winner_each_amount">인당 수령액</string>
     <string name="explain_draw_day">회차는 일요일 0시에 최신화됩니다</string>
+    <string name="explain_edittext">회차를 기입해주세요</string>
     <string name="winner_search">검색</string>
 
     // fragment_roulette

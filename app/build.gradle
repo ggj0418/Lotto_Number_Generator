@@ -10,8 +10,8 @@ android {
         applicationId "com.mepus.productiontest"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 17   // 2021.06.27 버전
-        versionName "1.8.0" // 로고 변경
+        versionCode 18   // 2022.03.06 버전
+        versionName "1.9.0" // 다크 모드 지원 및 UI 개선, 무작위 번호 분석 선택지 추가
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
